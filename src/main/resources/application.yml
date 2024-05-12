@@ -1,0 +1,70 @@
+spring:
+  application:
+    name: weather-api
+  datasource:
+    url: jdbc:h2:mem:testdb
+    username: sa
+    password: password
+    driverClassName: org.h2.Driver
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate.ddl-auto: update
+  h2:
+    console:
+      enabled: true
+      path: /console/
+    tcp:
+      enabled: true
+
+h2:
+  tcp:
+    enabled: true
+
+server:
+  port: 8090
+
+weather-map:
+  service:
+    endpoint: https://samples.openweathermap.org
+    path: /data/2.5/weather
+    api-key: 5435d47939bf034c3fdd15d80ed123ef
+  client:
+    api-keys:
+      - db69b8c7a0722ce1007814439a558418
+      - 35425240a30d6459b4b9d702c491fd5e
+      - 037f46e759582713f4d9f0c104502889
+      - fb46fcd616f6c17513bc6cadf661c287
+      - 8e4680e536f3dae3ba701c5c085e15b5
+
+resilience4j:
+  retry:
+    retryAspectOrder: 2
+    instances:
+      weather-map-api:
+        maxAttempts: 3
+        waitDuration: 2s
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+        retryExceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException
+          - org.springframework.web.reactive.function.client.WebClientRequestException
+          - org.springframework.web.client.HttpServerErrorException
+        ignoreExceptions:
+          - org.springframework.web.client.HttpClientErrorException
+  circuitbreaker:
+    circuitBreakerAspectOrder: 1
+    instances:
+      weather-map-api:
+        slidingWindowSize: 5
+        permittedNumberOfCallsInHalfOpenState: 2
+        slidingWindowType: COUNT_BASED
+        minimumNumberOfCalls: 3
+        waitDurationInOpenState: 50s
+        failureRateThreshold: 50 # percent
+
+
+
+
+
+

@@ -1,0 +1,3 @@
+weather-map:
+  service:
+    endpoint: http://localhost:8091

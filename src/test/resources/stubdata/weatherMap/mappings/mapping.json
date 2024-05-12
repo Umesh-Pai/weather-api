@@ -1,0 +1,21 @@
+{
+  "mappings": [
+
+    {
+      "name": "success",
+      "priority": 1,
+      "request": {
+        "method" : "GET",
+        "urlPattern": "/data/2.5/weather\\?q=London,uk&appid=5435d47939bf034c3fdd15d80ed123ef"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-type": "application/json"
+        },
+        "bodyFileName": "success.json"
+      }
+    }
+
+  ]
+}

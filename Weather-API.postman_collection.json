@@ -1,0 +1,85 @@
+{
+	"info": {
+		"_postman_id": "90c9d248-013c-4f08-b130-a1aa851442b9",
+		"name": "Weather-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "288125",
+		"_collection_link": "https://speeding-meadow-807505.postman.co/workspace/test-Workspace~0d86b7a9-49ce-4575-bf49-57d005d5e90a/collection/288125-90c9d248-013c-4f08-b130-a1aa851442b9?action=share&source=collection_link&creator=288125"
+	},
+	"item": [
+		{
+			"name": "Get Weather Report",
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-API-Key",
+						"value": "fb46fcd616f6c17513bc6cadf661c287",
+						"type": "text"
+					},
+					{
+						"key": "X-CorrelationID",
+						"value": "7090265d-1f4a-4cd2-b0df-10370b08d7e3",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:8090/v1/weather-api/weather?city=London&country=uk",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8090",
+					"path": [
+						"v1",
+						"weather-api",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "city",
+							"value": "London"
+						},
+						{
+							"key": "country",
+							"value": "uk"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Open Weather Map API",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://samples.openweathermap.org/data/2.5/weather?q=Lisbon,PT&appid=db69b8c7a0722ce1007814439a558418",
+					"protocol": "https",
+					"host": [
+						"samples",
+						"openweathermap",
+						"org"
+					],
+					"path": [
+						"data",
+						"2.5",
+						"weather"
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "Lisbon,PT"
+						},
+						{
+							"key": "appid",
+							"value": "db69b8c7a0722ce1007814439a558418"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
